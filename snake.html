@@ -5,9 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Snake</title>
+    <style>
+      .button {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;}
+
+      .buttonup {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 100px;
+        cursor: pointer;
+      }
+      
+      
+      .button1 {background-color: #1e59fc;} 
+      .button2 {background-color: #1e59fc;} 
+      .button3 {background-color: #1e59fc;} 
+      .button4 {background-color: #1e59fc;} 
+      </style>
   </head>
   <body>
     <canvas id="canvas" width="400" height="400"></canvas>
+    <p></p>
+    <button onclick="myFunctionUp()" class="buttonup button1">Up</button>
+    <p></p>
+    
+    <button onclick="myFunctionleft()" class="button button3">Left</button>
+    <button onclick="myFunctionDown()" class="button button2">Down</button>
+    <button onclick="myFunctionRight()" class="button button4">Right</button>
 
     <script>
       var canvas, ctx;
@@ -22,10 +59,8 @@
         flag = true;
 
         // render X times per second
-        if(flag == true){
         var x = 8;
-        setInterval(draw, 1000 / x);
-        }
+        setInterval(draw, 1000 / x);        
       };
 
       // game world
@@ -48,14 +83,14 @@
         snakeY += nextY;
 
         // snake over game world?
-        if (snakeX < 0) {
+        if (snakeX < -1) {
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
         }
-        if (snakeX > gridSize - 1) {
+        if (snakeX > gridSize ) {
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
@@ -63,14 +98,14 @@
            flag = false;
         }
 
-        if (snakeY < 0) {
+        if (snakeY < -1) {
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
         }
-        if (snakeY > gridSize - 1) {
+        if (snakeY > gridSize ) {
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
@@ -81,9 +116,15 @@
         //snake bite apple?
         if (snakeX == appleX && snakeY == appleY) {
           tailSize++;
+          var genX, genY;
 
-          appleX = Math.floor(Math.random() * gridSize);
-          appleY = Math.floor(Math.random() * gridSize);
+          do {     
+            genX = Math.floor(Math.random() * gridSize);
+            genY = Math.floor(Math.random() * gridSize);
+          } while (genX == snakeX && genY == snakeY);
+
+          appleX = genX;
+          appleY = genY;
         }
 
         //paint background
@@ -154,6 +195,38 @@
             break;
         }
       }
+      // input button
+      function myFunctionDown() {
+        if(nextY != -1){
+            nextX = 0;
+            nextY = 1;
+            
+            }
+      }
+      function myFunctionUp(){
+        if(nextY != 1){
+           
+           nextX = 0;
+           nextY = -1;
+
+         }
+      }
+      function myFunctionRight() {
+        if(nextX != -1){
+            nextX = 1;
+            nextY = 0;
+            
+            }
+      }
+      function myFunctionleft(){
+        if(nextX != 1){
+           
+           nextX = -1;
+           nextY = 0;
+
+         }
+      }
+
     </script>
   </body>
 </html>
