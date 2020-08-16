@@ -102,7 +102,11 @@
 
           //snake bites it's tail?
           if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
-            tailSize = defaultTailSize;
+            defaultTailSize = 3;
+          tailSize = defaultTailSize;
+          snakeTrail = [];
+           snakeX = (snakeY = 10);
+           flag = false;
           }
         }
 
