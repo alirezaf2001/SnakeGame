@@ -37,6 +37,10 @@
       </style>
   </head>
   <body>
+    <p>Highscore</p>
+    <p id="highscore"></p>
+    <p>Score</p>
+    <p id="score"></p>
     <canvas id="canvas" width="400" height="400"></canvas>
     <p></p>
     <button onclick="myFunctionUp()" class="buttonup button1">Up</button>
@@ -49,11 +53,17 @@
     <script>
       var canvas, ctx;
       var flag = true;
+      var score = 0 , highscore = 0 ;
 
       
        window.onload = function() {
         canvas = document.getElementById("canvas");
         ctx = canvas.getContext("2d");
+        document.getElementById('highscore').innerHTML = highscore;
+         document.getElementById('score').innerHTML = score;
+
+
+        
 
         document.addEventListener("keydown", keyDownEvent);
         
@@ -94,6 +104,9 @@
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
+           score=0;
+           document.getElementById('score').innerHTML = score;
+
         }
         if (snakeX > gridSize - 1) {
           defaultTailSize = 3;
@@ -101,6 +114,8 @@
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
+           score=0;
+           document.getElementById('score').innerHTML = score;
         }
 
         if (snakeY < 0) {
@@ -109,6 +124,8 @@
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
+           score=0;
+           document.getElementById('score').innerHTML = score;
         }
         if (snakeY > gridSize - 1 ) {
           defaultTailSize = 3;
@@ -116,12 +133,20 @@
           snakeTrail = [];
            snakeX = (snakeY = 10);
           flag = false;
+          score=0;
+           document.getElementById('score').innerHTML = score;
         }
 
         //snake bite apple?
         if (snakeX == appleX && snakeY == appleY) {
           tailSize++;
           var genX, genY;
+          score += 10;
+          if (score > highscore){
+            highscore = score;
+          }
+          document.getElementById('highscore').innerHTML = highscore;
+         document.getElementById('score').innerHTML = score;
 
           do {     
             genX = Math.floor(Math.random() * gridSize);
@@ -152,6 +177,8 @@
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
+           score=0;
+           document.getElementById('score').innerHTML = score;
           }
         }
 
