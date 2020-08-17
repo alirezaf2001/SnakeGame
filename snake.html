@@ -48,7 +48,7 @@
 
     <script>
       var canvas, ctx;
-      var flag=false;
+      var flag = true;
 
       
        window.onload = function() {
@@ -56,10 +56,10 @@
         ctx = canvas.getContext("2d");
 
         document.addEventListener("keydown", keyDownEvent);
-        flag = true;
+        
 
         // render X times per second
-        var x = 8;
+        var x = 10;
         setInterval(draw, 1000 / x);        
       };
 
@@ -77,20 +77,27 @@
       var appleX = (appleY = 15);
 
       // draw
+      
       function draw() {
         // move snake in next pos
+        
         snakeX += nextX;
         snakeY += nextY;
+        
 
         // snake over game world?
-        if (snakeX < -1) {
+<<<<<<< HEAD
+        if (snakeX < -1) { //fix the Grid Funx and fix the pause thing
+=======
+        if (snakeX < 0) {
+>>>>>>> 13fc7258cba661f60bde9c183b1ae1619257951c
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
         }
-        if (snakeX > gridSize ) {
+        if (snakeX > gridSize - 1) {
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
@@ -98,14 +105,14 @@
            flag = false;
         }
 
-        if (snakeY < -1) {
+        if (snakeY < 0) {
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
            snakeX = (snakeY = 10);
            flag = false;
         }
-        if (snakeY > gridSize ) {
+        if (snakeY > gridSize - 1 ) {
           defaultTailSize = 3;
           tailSize = defaultTailSize;
           snakeTrail = [];
@@ -139,7 +146,13 @@
             snakeTrail[i].y * tileSize,
             tileSize,
             tileSize
-          );
+          );}
+           ctx.strokeStyle = "black";
+          for(var i = 0; i < snakeTrail.length; i++){
+           ctx.strokeRect(snakeTrail[i].x * tileSize,
+            snakeTrail[i].y * tileSize,
+            tileSize,
+            tileSize);}
 
           //snake bites it's tail?
           if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
