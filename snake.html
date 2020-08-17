@@ -148,14 +148,7 @@
             snakeTrail[i].y * tileSize,
             tileSize,
             tileSize
-          );}
-           ctx.strokeStyle = "black";
-          for(var i = 0; i < snakeTrail.length; i++){
-           ctx.strokeRect(snakeTrail[i].x * tileSize,
-            snakeTrail[i].y * tileSize,
-            tileSize,
-            tileSize);}
-
+          );
           //snake bites it's tail?
           if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
             defaultTailSize = 3;
