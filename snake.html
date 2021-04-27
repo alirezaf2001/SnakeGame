@@ -37,7 +37,7 @@
       </style>
   </head>
   <body>
-    <p>Highscore Just for Aida XD </p>
+    <p>Highscore</p>
     <p id="highscore"></p>
     <p>Score</p>
     <p id="score"></p>
@@ -53,7 +53,7 @@
     <script>
       var canvas, ctx;
       var flag = true;
-      var score = 0 , highscore = 99999 ;
+      var score = 0 , highscore ;
 
       
        window.onload = function() {
@@ -69,7 +69,7 @@
         
 
         // render X times per second
-        var x = 5;
+        var x = 10;
         setInterval(draw, 1000 / x);        
       };
 
